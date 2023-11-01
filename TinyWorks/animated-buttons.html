@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button Animation</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #000;
+      }
+      
+      .jumping-btn,
+      .expanding-btn {
+        margin: 1em;
+        position: relative;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1em 2em;
+        font-size: 1rem;
+        color: white;
+        background-color: rgb(53, 53, 255);
+        border: none;
+        border-radius: 0.1em;
+        cursor: pointer;
+        transition: transform 1000ms;
+        z-index: 1;
+      }
+
+      .jumping-btn:hover,
+      .jumping-btn:focus-visible {
+        transform: translateY(-0.75em);
+        transition: transform 250ms;
+      }
+
+      .fix-animated-btn:hover::after,
+      .fix-animated-btn:focus-visible ::after {
+        content: "";
+        position: absolute;
+        bottom: -0.75em;
+        left: -0.75em;
+        right: -0.75em;
+        top: -0.75em;
+        background-color: transparent;
+      }
+
+      .expanding-btn {
+        background-color: transparent;
+        border-bottom: solid 1px #fff;
+        padding-bottom: 0.25em;
+        transition: padding-bottom 500ms;
+      }
+
+      .expanding-btn:hover,
+      .expanding-btn:focus-visible {
+        transition: padding-bottom 200ms;
+        padding-bottom: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="jumping-btn fix-animated-btn">Jumping Click me!</button>
+    <button class="expanding-btn">Expanding Click me!</button>
+
+    <script>
+      document.querySelectorAll("button").forEach((button) => {
+        button.addEventListener("click", (event) => {
+          console.log("Clicked Button: " + button.innerHTML + " Classes:" + button.className);
+        });
+      });
+    </script>
+  </body>
+</html>
